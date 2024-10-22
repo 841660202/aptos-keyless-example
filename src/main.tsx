@@ -1,29 +1,31 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import HomePage from "./pages/HomePage.tsx";
-import LoginPage from "./pages/LoginPage.tsx";
-import CallbackPage from "./pages/CallbackPage.tsx";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import HomePage from './pages/HomePage.tsx';
+import LoginPage from './pages/LoginPage.tsx';
+import CallbackPage from './pages/CallbackPage.tsx';
 
-import "./index.css";
+import './index.css';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <LoginPage />,
   },
   {
-    path: "/callback",
+    path: '/callback',
     element: <CallbackPage />,
   },
   {
-    path: "/home",
+    path: '/home',
     element: <HomePage />,
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
+ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <div className="bg-white dark:bg-black dark:text-slate-400">
+      <RouterProvider router={router} />
+    </div>
   </React.StrictMode>
 );

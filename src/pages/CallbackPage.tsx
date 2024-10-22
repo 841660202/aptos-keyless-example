@@ -1,17 +1,15 @@
-import { useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import { useKeylessAccounts } from "../core/useKeylessAccounts";
+import { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useKeylessAccounts } from '../core/useKeylessAccounts';
 
 function CallbackPage() {
   const isLoading = useRef(false);
-  const switchKeylessAccount = useKeylessAccounts(
-    (state) => state.switchKeylessAccount
-  );
+  const switchKeylessAccount = useKeylessAccounts((state) => state.switchKeylessAccount);
   const navigate = useNavigate();
 
   const fragmentParams = new URLSearchParams(window.location.hash.substring(1));
-  const idToken = fragmentParams.get("id_token");
-
+  const idToken = fragmentParams.get('id_token');
+  console.log('idToken', idToken);
   useEffect(() => {
     // This is a workaround to prevent firing twice due to strict mode
     if (isLoading.current) return;
@@ -20,14 +18,14 @@ function CallbackPage() {
     async function deriveAccount(idToken: string) {
       try {
         await switchKeylessAccount(idToken);
-        navigate("/home");
+        navigate('/home');
       } catch (error) {
-        navigate("/");
+        navigate('/');
       }
     }
 
     if (!idToken) {
-      navigate("/");
+      navigate('/');
       return;
     }
 
